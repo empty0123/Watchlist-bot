@@ -1,0 +1,60 @@
+{
+ "stichtag": "2026-09-21",
+ "quelle": "synology-yfinance",
+ "erzeugt": "2026-09-21T22:34:05",
+ "benchmark": {
+  "spx_1m_prozent": 1.62,
+  "spx_3m_prozent": 3.91,
+  "spx_ytd_prozent": 13.43
+ },
+ "wechselkurse": {
+  "eur_usd": 1.1469,
+  "eur_hkd": 8.9947,
+  "eur_krw": 1575.3,
+  "eur_cad": 1.6092
+ },
+ "fertig": [
+  "NVDA"
+ ],
+ "aktien": [
+  {
+   "ticker": "NVDA",
+   "name": "NVIDIA",
+   "waehrung": "USD",
+   "kurs": 227.38,
+   "kurs_datum": "2026-09-21",
+   "tagesveraenderung_prozent": 2.3,
+   "tagesvolumen": 108450493,
+   "volumen_3m": 130655136,
+   "ytd_prozent": 21.92,
+   "perf_1m_prozent": 4.86,
+   "perf_3m_prozent": 8.98,
+   "hoch52": 235.74,
+   "tief52": 165.17,
+   "ath": 235.2,
+   "atl": 0.0312,
+   "gd20": 219.51,
+   "gd50": 214.6,
+   "gd100": 211.9,
+   "gd200": 198.61,
+   "umsatzwachstum_lfd_prozent": 105.9,
+   "umsatzwachstum_next_prozent": 65.89,
+   "epswachstum_lfd_prozent": 127.8,
+   "epswachstum_next_prozent": 68.5,
+   "profitabel": true,
+   "bruttomarge_prozent": 74.67,
+   "fcf_marge_prozent": 13.8,
+   "bilanz": "nettocash",
+   "fwd_kgv": 14.5,
+   "kuv": 18.12,
+   "macd_verkauf": true,
+   "gap_offen": false,
+   "konsens": "Strong Buy",
+   "anzahl_analysten": 59,
+   "ziel_avg": 327.7,
+   "ziel_hoch": 515.0,
+   "risiko": null
+  }
+ ],
+ "fehler": []
+}
