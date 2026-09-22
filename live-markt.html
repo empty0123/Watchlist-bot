@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Live-Markt</title>
+<style>
+:root{
+  --bg:#0F1419; --panel:#151B22; --line:#242E38;
+  --ink:#E6EBF0; --muted:#8A98A5; --accent:#2962FF;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
+  padding:0 16px env(safe-area-inset-bottom,16px);
+}
+header{
+  max-width:1280px; margin:0 auto; padding:18px 0 12px;
+  display:flex; flex-wrap:wrap; gap:12px; align-items:baseline;
+}
+h1{font-size:19px; margin:0; letter-spacing:-.01em}
+.sub{color:var(--muted); font-size:13px}
+.links{margin-left:auto; display:flex; gap:14px; flex-wrap:wrap}
+.links a{color:var(--accent); text-decoration:none; font-size:13px}
+.links a:hover{text-decoration:underline}
+
+nav{
+  max-width:1280px; margin:0 auto 14px; display:flex; gap:6px;
+  overflow-x:auto; -webkit-overflow-scrolling:touch; padding-bottom:2px;
+}
+nav button{
+  flex:0 0 auto; background:var(--panel); color:var(--muted);
+  border:1px solid var(--line); border-radius:8px;
+  padding:8px 14px; font-size:14px; font-family:inherit; cursor:pointer;
+}
+nav button[aria-selected="true"]{background:var(--accent); border-color:var(--accent); color:#fff}
+
+main{max-width:1280px; margin:0 auto}
+section[hidden]{display:none}
+.card{
+  background:var(--panel); border:1px solid var(--line);
+  border-radius:12px; overflow:hidden; margin-bottom:16px;
+}
+.card h2{
+  font-size:14px; margin:0; padding:12px 14px;
+  border-bottom:1px solid var(--line); font-weight:600;
+}
+.card h2 span{color:var(--muted); font-weight:400; font-size:12.5px; margin-left:6px}
+.body{padding:10px}
+.tall{height:640px}
+.mid{height:480px}
+@media(max-width:700px){ .tall{height:460px} .mid{height:380px} }
+.tradingview-widget-container,
+.tradingview-widget-container__widget{height:100%; width:100%}
+
+.pick{
+  display:flex; gap:10px; align-items:center; flex-wrap:wrap;
+  padding:10px 14px; border-bottom:1px solid var(--line);
+}
+select{
+  background:var(--bg); color:var(--ink); border:1px solid var(--line);
+  border-radius:8px; padding:8px 10px; font:inherit; font-size:14px; max-width:100%;
+}
+footer{
+  max-width:1280px; margin:0 auto; padding:14px 0 24px;
+  color:var(--muted); font-size:12px; border-top:1px solid var(--line);
+}
+.tradingview-widget-copyright{font-size:11px; color:var(--muted); text-align:right; padding:4px 8px}
+.tradingview-widget-copyright a{color:var(--muted); text-decoration:none}
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <h1>Live-Markt</h1>
+    <div class="sub">Kurse live von TradingView &middot; aktualisiert sich von selbst</div>
+  </div>
+  <div class="links">
+    <a href="https://claude.ai/artifact/BB8cychECUPW981di8FeW6" target="_blank" rel="noopener">Modell-Screening &rarr;</a>
+    <a href="https://www.tradingview.com/heatmap/stock/" target="_blank" rel="noopener">TradingView</a>
+  </div>
+</header>
+
+<!-- Ticker-Band -->
+<div class="card" style="max-width:1280px;margin:0 auto 16px">
+  <div class="tradingview-widget-container">
+    <div class="tradingview-widget-container__widget"></div>
+    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+    {
+      "symbols": [
+        {"proName":"NASDAQ:NDX","title":"Nasdaq 100"},
+        {"proName":"SP:SPX","title":"S&P 500"},
+        {"proName":"XETR:DAX","title":"DAX"},
+        {"proName":"NASDAQ:NVDA","title":"NVIDIA"},
+        {"proName":"NASDAQ:AMD","title":"AMD"},
+        {"proName":"NASDAQ:AMZN","title":"Amazon"},
+        {"proName":"NASDAQ:NFLX","title":"Netflix"},
+        {"proName":"NASDAQ:ADBE","title":"Adobe"},
+        {"proName":"NYSE:LLY","title":"Eli Lilly"},
+        {"proName":"NYSE:CRM","title":"Salesforce"},
+        {"proName":"TVC:DXY","title":"Dollar-Index"},
+        {"proName":"FX:EURUSD","title":"EUR/USD"},
+        {"proName":"TVC:GOLD","title":"Gold"}
+      ],
+      "showSymbolLogo": true,
+      "isTransparent": true,
+      "displayMode": "adaptive",
+      "colorTheme": "dark",
+      "locale": "de_DE"
+    }
+    </script>
+  </div>
+</div>
+
+<nav role="tablist">
+  <button role="tab" data-tab="sektoren" aria-selected="true">Sektoren</button>
+  <button role="tab" data-tab="nasdaq" aria-selected="false">Nasdaq 100</button>
+  <button role="tab" data-tab="chart" aria-selected="false">Chart</button>
+  <button role="tab" data-tab="markt" aria-selected="false">Markt &amp; Bewegung</button>
+</nav>
+
+<main>
+
+  <section id="sektoren">
+    <div class="card">
+      <h2>S&amp;P 500 nach Sektoren <span>Gr&ouml;&szlig;e = Marktkapitalisierung, Farbe = Tagesver&auml;nderung</span></h2>
+      <div class="body tall">
+        <div class="tradingview-widget-container">
+          <div class="tradingview-widget-container__widget"></div>
+          <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-stock-heatmap.js" async>
+          {
+            "dataSource": "SPX500",
+            "blockSize": "market_cap_basic",
+            "blockColor": "change",
+            "grouping": "sector",
+            "locale": "de_DE",
+            "symbolUrl": "",
+            "colorTheme": "dark",
+            "hasTopBar": true,
+            "isDataSetEnabled": true,
+            "isZoomEnabled": true,
+            "hasSymbolTooltip": true,
+            "isMonoSize": false,
+            "width": "100%",
+            "height": "100%"
+          }
+          </script>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="nasdaq" hidden>
+    <div class="card">
+      <h2>Nasdaq 100 nach Sektoren <span>gleiche Logik wie die Heatmap im Screening &ndash; hier live</span></h2>
+      <div class="body tall">
+        <div class="tradingview-widget-container">
+          <div class="tradingview-widget-container__widget"></div>
+          <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-stock-heatmap.js" async>
+          {
+            "dataSource": "NASDAQ100",
+            "blockSize": "market_cap_basic",
+            "blockColor": "change",
+            "grouping": "sector",
+            "locale": "de_DE",
+            "symbolUrl": "",
+            "colorTheme": "dark",
+            "hasTopBar": true,
+            "isDataSetEnabled": true,
+            "isZoomEnabled": true,
+            "hasSymbolTooltip": true,
+            "isMonoSize": false,
+            "width": "100%",
+            "height": "100%"
+          }
+          </script>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="chart" hidden>
+    <div class="card">
+      <h2>Chart aus der Watchlist</h2>
+      <div class="pick">
+        <label for="sym">Titel:</label>
+        <select id="sym"></select>
+      </div>
+      <div class="body tall" id="chartbox"></div>
+    </div>
+  </section>
+
+  <section id="markt" hidden>
+    <div class="card">
+      <h2>Markt&uuml;bersicht <span>Indizes, Rohstoffe, Devisen</span></h2>
+      <div class="body mid">
+        <div class="tradingview-widget-container">
+          <div class="tradingview-widget-container__widget"></div>
+          <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
+          {
+            "colorTheme": "dark",
+            "dateRange": "1D",
+            "locale": "de_DE",
+            "isTransparent": true,
+            "showFloatingTooltip": true,
+            "width": "100%",
+            "height": "100%",
+            "showSymbolLogo": true,
+            "tabs": [
+              {"title":"Indizes","symbols":[
+                {"s":"FOREXCOM:SPXUSD","d":"S&P 500"},
+                {"s":"FOREXCOM:NSXUSD","d":"Nasdaq 100"},
+                {"s":"INDEX:DEU40","d":"DAX"},
+                {"s":"FOREXCOM:DJI","d":"Dow Jones"}
+              ]},
+              {"title":"Rohstoffe","symbols":[
+                {"s":"TVC:GOLD","d":"Gold"},
+                {"s":"TVC:SILVER","d":"Silber"},
+                {"s":"TVC:USOIL","d":"&Ouml;l WTI"}
+              ]},
+              {"title":"Devisen","symbols":[
+                {"s":"FX:EURUSD","d":"EUR/USD"},
+                {"s":"TVC:DXY","d":"Dollar-Index"},
+                {"s":"TVC:US10Y","d":"US-Anleihe 10J"}
+              ]}
+            ]
+          }
+          </script>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Gewinner &amp; Verlierer heute <span>US-Markt</span></h2>
+      <div class="body mid">
+        <div class="tradingview-widget-container">
+          <div class="tradingview-widget-container__widget"></div>
+          <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-hotlists.js" async>
+          {
+            "colorTheme": "dark",
+            "dateRange": "12M",
+            "exchange": "US",
+            "showChart": true,
+            "locale": "de_DE",
+            "largeChartUrl": "",
+            "isTransparent": true,
+            "showSymbolLogo": true,
+            "showFloatingTooltip": true,
+            "width": "100%",
+            "height": "100%"
+          }
+          </script>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  Live-Daten von TradingView, teils 15 Min verz&ouml;gert (je nach B&ouml;rse). Die Bewertung nach dem 100-Punkte-Modell l&auml;uft weiterhin auf der Screening-Seite.
+</footer>
+
+<script>
+// --- Watchlist (Stand 21.09.2026) mit TradingView-Börsenkürzeln ---
+var WATCHLIST = [
+  ["NASDAQ:NVDA","NVIDIA"], ["NASDAQ:AMD","AMD"], ["NASDAQ:AMZN","Amazon"],
+  ["NASDAQ:NFLX","Netflix"], ["NASDAQ:ADBE","Adobe"], ["NASDAQ:ADSK","Autodesk"],
+  ["NASDAQ:INTU","Intuit"], ["NASDAQ:INTC","Intel"], ["NASDAQ:PYPL","PayPal"],
+  ["NASDAQ:ZS","Zscaler"], ["NASDAQ:SOFI","SoFi"], ["NASDAQ:EXTR","Extreme Networks"],
+  ["NASDAQ:ARGX","argenx"], ["NASDAQ:ONC","BeOne Medicines"], ["NASDAQ:AAL","American Airlines"],
+  ["NASDAQ:ROP","Roper Technologies"], ["NASDAQ:SMCI","Super Micro"], ["NASDAQ:FIVE","Five Below"],
+  ["NASDAQ:BLDP","Ballard Power"], ["NASDAQ:ASTS","AST SpaceMobile"],
+  ["NYSE:CRM","Salesforce"], ["NYSE:SNOW","Snowflake"], ["NYSE:LLY","Eli Lilly"],
+  ["NYSE:DIS","Walt Disney"], ["NYSE:AJG","Arthur J. Gallagher"], ["NYSE:XYZ","Block"],
+  ["NYSE:HEI","HEICO"], ["NYSE:FICO","Fair Isaac"], ["NYSE:GWRE","Guidewire"],
+  ["NYSE:GPN","Global Payments"], ["NYSE:NEM","Newmont"], ["NYSE:ROL","Rollins"],
+  ["NYSE:LUV","Southwest Airlines"], ["NYSE:EQX","Equinox Gold"], ["NYSE:TE","T1 Energy"],
+  ["NYSE:SE","Sea Limited"],
+  ["TSX:CSU","Constellation Software"], ["HKEX:3750","CATL"], ["KRX:005930","Samsung Electronics"],
+  ["XETR:EVD","CTS Eventim"], ["XETR:G24","Scout24"], ["XETR:ADS","adidas"]
+];
+
+// --- Tabs ---
+var buttons = document.querySelectorAll('nav button');
+var sections = document.querySelectorAll('main section');
+buttons.forEach(function(btn){
+  btn.addEventListener('click', function(){
+    buttons.forEach(function(b){ b.setAttribute('aria-selected', b === btn ? 'true' : 'false'); });
+    sections.forEach(function(s){ s.hidden = (s.id !== btn.dataset.tab); });
+    if (btn.dataset.tab === 'chart' && !document.getElementById('chartbox').childNodes.length) {
+      renderChart(select.value);
+    }
+    try { localStorage.setItem('lm_tab', btn.dataset.tab); } catch(e){}
+  });
+});
+
+// --- Chart-Auswahl ---
+var select = document.getElementById('sym');
+WATCHLIST.forEach(function(w){
+  var o = document.createElement('option');
+  o.value = w[0]; o.textContent = w[1];
+  select.appendChild(o);
+});
+try {
+  var saved = localStorage.getItem('lm_sym');
+  if (saved && WATCHLIST.some(function(w){ return w[0] === saved; })) select.value = saved;
+} catch(e){}
+
+function renderChart(symbol){
+  var box = document.getElementById('chartbox');
+  box.innerHTML = '';
+  var cont = document.createElement('div');
+  cont.className = 'tradingview-widget-container';
+  var inner = document.createElement('div');
+  inner.className = 'tradingview-widget-container__widget';
+  cont.appendChild(inner);
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.src = 'https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js';
+  s.async = true;
+  s.innerHTML = JSON.stringify({
+    autosize: true,
+    symbol: symbol,
+    interval: "D",
+    timezone: "Europe/Berlin",
+    theme: "dark",
+    style: "1",
+    locale: "de_DE",
+    hide_side_toolbar: false,
+    allow_symbol_change: true,
+    studies: ["STD;EMA","STD;RSI"],
+    support_host: "https://www.tradingview.com"
+  });
+  cont.appendChild(s);
+  box.appendChild(cont);
+}
+
+select.addEventListener('change', function(){
+  try { localStorage.setItem('lm_sym', select.value); } catch(e){}
+  renderChart(select.value);
+});
+
+// zuletzt genutzten Tab wiederherstellen
+try {
+  var t = localStorage.getItem('lm_tab');
+  if (t) {
+    var b = document.querySelector('nav button[data-tab="' + t + '"]');
+    if (b) b.click();
+  }
+} catch(e){}
+</script>
+
+</body>
+</html>
