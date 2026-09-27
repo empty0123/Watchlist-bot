@@ -1,7 +1,7 @@
 {
  "stichtag": "2026-09-25",
  "quelle": "synology-yfinance",
- "erzeugt": "2026-09-26T22:16:09",
+ "erzeugt": "2026-09-27T22:16:10",
  "benchmark": {
   "spx_1m_prozent": 0.88,
   "spx_3m_prozent": 5.29,
@@ -9,9 +9,9 @@
  },
  "wechselkurse": {
   "eur_usd": 1.1401,
-  "eur_hkd": 8.9349,
-  "eur_krw": 1543.2,
-  "eur_cad": 1.6107
+  "eur_hkd": 8.9251,
+  "eur_krw": 1540.6,
+  "eur_cad": 1.6075
  },
  "sektoren": [
   {
@@ -241,12 +241,12 @@
    "umsatzwachstum_lfd_prozent": 19.6,
    "umsatzwachstum_next_prozent": 14.45,
    "epswachstum_lfd_prozent": 242.3,
-   "epswachstum_next_prozent": -18.53,
+   "epswachstum_next_prozent": -18.45,
    "profitabel": true,
    "bruttomarge_prozent": 50.77,
    "fcf_marge_prozent": 0.42,
    "bilanz": "moderat",
-   "fwd_kgv": 24.02,
+   "fwd_kgv": 23.83,
    "kuv": 3.47,
    "macd_verkauf": true,
    "gap_offen": true,
@@ -2248,8 +2248,8 @@
    "gap_offen": false,
    "konsens": null,
    "anzahl_analysten": 12,
-   "ziel_avg": 4024.39,
-   "ziel_hoch": 5587.28,
+   "ziel_avg": 4020.69,
+   "ziel_hoch": 5582.14,
    "risiko": null,
    "rsi14": 40.37,
    "golden": false,
@@ -2308,8 +2308,8 @@
    "gap_offen": false,
    "konsens": "Strong Buy",
    "anzahl_analysten": 19,
-   "ziel_avg": 781.5,
-   "ziel_hoch": 955.01,
+   "ziel_avg": 781.43,
+   "ziel_hoch": 954.93,
    "risiko": null,
    "rsi14": 13.26,
    "golden": false,
@@ -2349,7 +2349,7 @@
    "hoch52": 362500.0,
    "tief52": 72600.0,
    "ath": 362100.66,
-   "atl": 1907.6335,
+   "atl": 1907.6329,
    "gd20": 261900.0,
    "gd50": 255380.0,
    "gd100": 279685.0,
